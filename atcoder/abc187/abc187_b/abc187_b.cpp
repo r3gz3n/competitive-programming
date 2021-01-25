@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: B - Gentle Pairs
+// Contest: AtCoder - AtCoder Beginner Contest 187
+// URL: https://atcoder.jp/contests/abc187/tasks/abc187_b
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -83,26 +83,33 @@ typedef pair<int, pii> ppii;
 typedef vector<pii> vpii;
 typedef vector<ppii> vppi;
 
-
+const int MAX = 1e3 + 5;
 
 
 class Solution {
 public:
+	pii p[MAX];
+	
+	double slope(int i, int j) {
+		return (double)(p[i].se - p[j].se) / (double)(p[i].fi - p[j].fi);
+	}
+
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int n;
+		cin >> n;
+		rep(i, 0, n, 1) {
+			cin >> p[i].fi >> p[i].se;
+		}
+		int ans = 0;
+		rep(i, 0, n, 1) {
+			rep(j, i+1, n, 1) {
+				double s = abs(slope(i, j));
+				if (abs(1 - s) < eps or s < eps or (0 < s and s < 1)) {
+					ans++;
+				}
+			}
+		}
+		cout << ans << endl;
     }
 };
 

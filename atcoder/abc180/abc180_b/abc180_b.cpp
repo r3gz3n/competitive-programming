@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: B - Various distances
+// Contest: AtCoder - AtCoder Beginner Contest 180
+// URL: https://atcoder.jp/contests/abc180/tasks/abc180_b
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -89,20 +89,16 @@ typedef vector<ppii> vppi;
 class Solution {
 public:
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int n;
+		double x, a = 0, b = 0, c = 0;
+		cin >> n;
+		rep(i, 0, n, 1) {
+			cin >> x;
+			a += abs(x);
+			b += x*x;
+			c = max(c, abs(x));
+		}
+		cout << a << endl << sqrt(b) << endl << c << endl;
     }
 };
 

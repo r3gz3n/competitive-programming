@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: E - Through Path
+// Contest: AtCoder - AtCoder Beginner Contest 187
+// URL: https://atcoder.jp/contests/abc187/tasks/abc187_e
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -84,25 +84,54 @@ typedef vector<pii> vpii;
 typedef vector<ppii> vppi;
 
 
-
+const int MAX = 2e5 + 5;
 
 class Solution {
 public:
+	vii adj[MAX];
+	int parent[MAX], vis[MAX];
+	ll c[MAX];
+	pii edge[MAX];
+	
+	void dfs(int from, int par) {
+		vis[from] = true;
+		repeach(to, adj[from]) {
+			if (vis[to] == false) {
+				parent[to] = from;
+				c[to] += c[from];
+				dfs(to, from);
+			}
+		}
+	}
+
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int n, q, t, e, x, a, b;
+		cin >> n;
+		memset(c, 0, n+1);
+		memset(parent, 0, n+1);
+		rep(i, 0, n+1, 1) vis[i] = false;
+		rep(i, 1, n, 1) {
+			cin >> a >> b;
+			edge[i] = {a, b};
+			adj[a].pb(b);
+			adj[b].pb(a);
+		}
+		dfs(1, -1);
+		cin >> q;
+		rep(i, 0, q, 1) {
+			cin >> t >> e >> x;
+			a = edge[e].fi;
+			b = edge[e].se;
+			if (parent[a] == b) {
+				swap(a, b);
+				t ^= 3;
+			}
+			if (t == 1) c[1] += x, c[b] -= x;
+			else c[b] += x;
+		}
+		rep(i, 0, n+1, 1) vis[i] = false;
+		dfs(1, -1);
+		rep(i, 1, n+1, 1) cout << c[i] << endl;
     }
 };
 

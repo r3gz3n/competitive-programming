@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: E - Queen on Grid
+// Contest: AtCoder - AtCoder Beginner Contest 183
+// URL: https://atcoder.jp/contests/abc183/tasks/abc183_e
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -83,26 +83,27 @@ typedef pair<int, pii> ppii;
 typedef vector<pii> vpii;
 typedef vector<ppii> vppi;
 
-
+const int MAX = 2005;
+int dp[MAX][MAX];
+string s[MAX];
 
 
 class Solution {
 public:
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int n, m;
+		cin >> n >> m;
+		rep(i, 0, n, 1) cin >> s[i];
+		rep(i, 0, n, 1) {
+			rep(j, 0, m, 1) {
+				if (s[i][j] == '#') continue;
+				if (i == 0 and j == 0) dp[i][j] = 1;
+				else if (i == 0) dp[i][j] = dp[i][j-1];
+				else if (j == 0) dp[i][j] = dp[i-1][j];
+				else dp[i][j] = dp[i-1][j] + dp[i][j-1] + dp[i-1][j-1];
+			}
+		}
+		cout << dp[n-1][m-1] << endl;
     }
 };
 

@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: C - Unlucky 7
+// Contest: AtCoder - Panasonic Programming Contest (AtCoder Beginner Contest 186)
+// URL: https://atcoder.jp/contests/abc186/tasks/abc186_c
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -84,25 +84,30 @@ typedef vector<pii> vpii;
 typedef vector<ppii> vppi;
 
 
-
-
 class Solution {
 public:
+	bool checkDigit7(int n, int base) {
+		while (n) {
+			if (n % base == 7) return true;
+			n /= base;
+		}
+		return false;
+	}
+
+	bool isDigit7Present(int n) {
+		int x = n;
+		return checkDigit7(n, 10) || checkDigit7(n, 8);
+	}
+	
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int n, ans = 0;
+		cin >> n;
+		rep(i, 1, n+1, 1) {
+			if (!isDigit7Present(i)) {
+				ans++;
+			}
+		}
+		cout << ans << endl;
     }
 };
 

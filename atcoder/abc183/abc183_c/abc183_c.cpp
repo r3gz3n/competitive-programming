@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: C - Travel
+// Contest: AtCoder - AtCoder Beginner Contest 183
+// URL: https://atcoder.jp/contests/abc183/tasks/abc183_c
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -82,27 +82,37 @@ typedef pair<int, int> pii;
 typedef pair<int, pii> ppii;
 typedef vector<pii> vpii;
 typedef vector<ppii> vppi;
+const int MAX = 10;
+vector<bool> vis;
+int k, n, ans = 0, cnt = 0;
+int t[MAX][MAX];
 
-
-
+void dfs(int from, int sum) {
+	if (sum > k) return;
+	vis[from] = true;
+	cnt++;
+	if (cnt == n and sum + t[from][0] == k) {
+		ans++;
+	}
+	rep(to, 0, n, 1) {
+		if (vis[to] == false) {
+			dfs(to, sum + t[from][to]);
+		}
+	}
+	vis[from] = false;
+	cnt--;
+}
 
 class Solution {
 public:
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		cin >> n >> k;
+		vis = vector<bool>(n, false);
+		rep(i, 0, n, 1) {
+			rep(j, 0, n, 1) cin >> t[i][j];
+		}
+		dfs(0, 0);
+		cout << ans << endl;
     }
 };
 

@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: D - Water Heater
+// Contest: AtCoder - AtCoder Beginner Contest 183
+// URL: https://atcoder.jp/contests/abc183/tasks/abc183_d
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -83,26 +83,30 @@ typedef pair<int, pii> ppii;
 typedef vector<pii> vpii;
 typedef vector<ppii> vppi;
 
-
+const int MAX = 2e5 + 5;
 
 
 class Solution {
 public:
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int n, w, s, x, t;
+		string ans = "Yes";
+		cin >> n >> w;
+		vll A(MAX, 0);
+		rep(i, 0, n, 1) {
+			cin >> s >> t >> x;
+			A[s] += x;
+			A[t] -= x;
+		}
+		rep(i, 0, MAX, 1) {
+			if (i > 0)
+				A[i] += A[i-1];
+			if (A[i] > w) {
+				ans = "No";
+				break;
+			}
+		}
+		cout << ans << endl;
     }
 };
 

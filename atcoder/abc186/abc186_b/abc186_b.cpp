@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: B - Blocks on Grid
+// Contest: AtCoder - Panasonic Programming Contest (AtCoder Beginner Contest 186)
+// URL: https://atcoder.jp/contests/abc186/tasks/abc186_b
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -83,26 +83,23 @@ typedef pair<int, pii> ppii;
 typedef vector<pii> vpii;
 typedef vector<ppii> vppi;
 
-
+const int MAX = 105;
+int a[MAX][MAX];
 
 
 class Solution {
 public:
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int n, m, ans = 0, mi = MAX;
+		cin >> n >> m;
+		rep(i, 0, n, 1) rep(j, 0, m, 1) {
+			cin >> a[i][j];
+			mi = min(mi, a[i][j]);
+		}
+		rep(i, 0, n, 1) rep(j, 0, m, 1) {
+			ans += a[i][j] - mi;
+		}
+		cout << ans << endl;
     }
 };
 

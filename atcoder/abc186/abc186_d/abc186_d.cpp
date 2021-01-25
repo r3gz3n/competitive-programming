@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: D - Sum of difference
+// Contest: AtCoder - Panasonic Programming Contest (AtCoder Beginner Contest 186)
+// URL: https://atcoder.jp/contests/abc186/tasks/abc186_d
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -84,25 +84,25 @@ typedef vector<pii> vpii;
 typedef vector<ppii> vppi;
 
 
-
+const int MAX = 2e5 + 5;
+ll a[MAX];
 
 class Solution {
 public:
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int n;
+		ll sum = 0, ans = 0;
+		cin >> n;
+		rep(i, 0, n, 1) {
+			cin >> a[i];
+			sum += a[i];
+		}
+		sort(alli(a, n, 0));
+		rep(i, 0, n, 1) {
+			ans += sum - (n-i)*a[i];
+			sum -= a[i];
+		}
+		cout << ans << endl;
     }
 };
 

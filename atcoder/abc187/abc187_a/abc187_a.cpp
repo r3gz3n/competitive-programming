@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: A - Large Digits
+// Contest: AtCoder - AtCoder Beginner Contest 187
+// URL: https://atcoder.jp/contests/abc187/tasks/abc187_a
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -88,21 +88,19 @@ typedef vector<ppii> vppi;
 
 class Solution {
 public:
+    int s(int a) {
+		int sum = 0;
+		while (a) {
+			sum += a % 10;
+			a /= 10;
+		}
+		return sum;
+	}
+
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int a, b;
+		cin >> a >> b;
+		cout << (s(a) > s(b) ? s(a) : s(b)) << endl;
     }
 };
 

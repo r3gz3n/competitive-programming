@@ -1,7 +1,7 @@
 
-// Problem: F - Simplified Reversi
-// Contest: AtCoder - AtCoder Beginner Contest 179
-// URL: https://atcoder.jp/contests/abc179/tasks/abc179_f
+// Problem: D - Choose Me
+// Contest: AtCoder - AtCoder Beginner Contest 187
+// URL: https://atcoder.jp/contests/abc187/tasks/abc187_d
 // Memory Limit: 1024 MB
 // Time Limit: 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -84,25 +84,37 @@ typedef vector<pii> vpii;
 typedef vector<ppii> vppi;
 
 
+const int MAX = 2e5 + 5;
 
+bool cmp(pair<ll, pair<ll, ll>> a, pair<ll, pair<ll, ll>> b) {
+	if (a.fi > b.fi) return true;
+	else if (a.fi < b.fi) return false;
+	else return (a.se.fi > b.se.fi);
+}
 
 class Solution {
 public:
+	pair<ll, pair<ll, ll>> p[MAX];	
+	
     void solve() {
-    	ll n, ans;
-    	int q;
-    	cin >> n >> q;
-    	ans = (n-2)*(n-2);
-    	rep(i, 0, q, 1) {
-    		cin >> type >> x;
-    		if (type == 1) {
-    			
-    		}
-    		else {
-    			
-    		}
-    	}
-    	cout << ans << endl;
+		int n;
+		ll a = 0, b = 0;
+		cin >> n;
+		rep(i, 0, n, 1) {
+			cin >> p[i].se.fi >> p[i].se.se;
+			p[i].fi = (2*p[i].se.fi + p[i].se.se);
+			a += p[i].se.fi;
+		}
+		sort(alli(p, n, 0), cmp);
+		int ans = 0;
+		rep(i, 0, n, 1) {
+			a -= p[i].se.fi;
+			b += p[i].se.fi + p[i].se.se;
+			ans++;
+			if (a < b) break;
+		}
+		cout << ans << endl;
+		
     }
 };
 
